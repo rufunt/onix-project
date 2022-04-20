@@ -8,6 +8,9 @@ RSpec.describe User, type: :model do
       it { expect(user).to validate_presence_of(:email) }
       it { expect(user).to validate_uniqueness_of(:email) }
       it { expect(user).to validate_presence_of(:first_name) }
+    end
+
+    context 'associations' do
       #it { expect(user).to have_many(:orders) }
     end
   end
