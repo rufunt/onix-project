@@ -11,7 +11,9 @@ RSpec.describe User, type: :model do
     end
 
     context 'associations' do
-      #it { expect(user).to have_many(:orders) }
+      it 'has many orders' do
+        expect(user).to respond_to :orders
+      end
     end
   end
 
