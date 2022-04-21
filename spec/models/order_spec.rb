@@ -13,6 +13,10 @@ RSpec.describe Order, type: :model do
       it 'has many menu_items' do
         expect(order).to respond_to :menu_items
       end
+
+      it 'belongs to user' do
+        expect(order).to respond_to :user
+      end
     end
 
   end

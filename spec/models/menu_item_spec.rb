@@ -10,6 +10,12 @@ RSpec.describe MenuItem, type: :model do
       it { expect(menu_item).to validate_presence_of(:price) }
     end
 
+    context 'associations' do
+      it 'belongs to order' do
+        expect(menu_item).to respond_to :order
+      end
+    end
+
   end
   
 end
