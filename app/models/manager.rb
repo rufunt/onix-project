@@ -7,4 +7,8 @@ class Manager < ApplicationRecord
     wrong_length: 'Invalid length'
   }
   validates :password, length: { in: 6..20 }
+
+  def fullname
+    "#{self.first_name} #{self.last_name}"
+  end
 end
