@@ -21,7 +21,7 @@ class ManagersController < ApplicationController
   end
 
   def update
-    if @manager.update(user_params)
+    if @manager.update(manager_params)
       redirect_to manager_url(@manager), notice: "User was successfully updated."
     else
       render :edit, status: :unprocessable_entity
@@ -40,5 +40,5 @@ private
   end
 
   def manager_params
-    params.require(:user).permit(:first_name,:last_name, :email, :password )
+    params.require(:manager).permit(:first_name,:last_name, :email, :password )
   end
