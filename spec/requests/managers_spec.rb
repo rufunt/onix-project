@@ -15,14 +15,14 @@ RSpec.describe "Managers", type: :request do
       }.to change(Manager, :count).by(1)
     end
 
-    xit "redirects to the created manager" do
+    it "redirects to the created manager" do
       post managers_url, params: { manager: valid_attributes }
       expect(response).to redirect_to(manager_url(Manager.last))
     end
   end
 
   describe "GET /show" do
-    xit "renders a successful response" do
+    it "renders a successful response" do
       manager = Manager.create! valid_attributes
       get manager_url(manager)
       expect(response).to be_successful
@@ -32,7 +32,7 @@ RSpec.describe "Managers", type: :request do
   describe "PATCH /update" do
     let(:new_attributes) {{
     first_name: Faker::FunnyName.name,
-    last_name: "MyString new",
+    last_name: Faker::FunnyName.name,
     email: Faker::Internet.unique.email,
     password: Faker::Internet.base64
   }}
@@ -41,10 +41,13 @@ RSpec.describe "Managers", type: :request do
       manager = Manager.create! valid_attributes
       patch manager_url(manager), params: { manager: new_attributes }
       manager.reload
-      skip("Add assertions for updated state")
+        expect(manager.first_name).to eq(new_attributes[:first_name])
+        expect(manager.last_name).to eq(new_attributes[:last_name])
+        expect(manager.email).to eq(new_attributes[:email])
+        expect(manager.password).to eq(new_attributes[:password])
     end
 
-    xit "redirects to the manager" do
+    it "redirects to the manager" do
       manager = Manager.create! valid_attributes
       patch manager_url(manager), params: { manager: new_attributes }
       manager.reload
@@ -60,7 +63,7 @@ RSpec.describe "Managers", type: :request do
       }.to change(Manager, :count).by(-1)
     end
 
-    xit "redirects to the users list" do
+    it "redirects to the users list" do
       manager = Manager.create! valid_attributes
       delete manager_url(manager)
       expect(response).to redirect_to(managers_url)
