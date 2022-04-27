@@ -1,4 +1,4 @@
-class ManagersController < ApplicationController
+class CashDescsController < ApplicationController
   before_action :set_cash_desk, only: %i[ show destroy ]
   def index; end
 
