@@ -10,6 +10,8 @@ class ManagersController < ApplicationController
     @manager = Manager.find(params[:id])
   end
 
+  def edit; end
+
   def create
     @manager = Manager.new(manager_params)
     if @manager.save
