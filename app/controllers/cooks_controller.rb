@@ -1,6 +1,8 @@
 class CooksController < ApplicationController
   before_action :set_cook, only: %i[ show edit update destroy ]
-  def index; end
+  def index
+    @cooks = Cook.all
+  end
 
   def new
     @cook = Cook.new
@@ -10,8 +12,10 @@ class CooksController < ApplicationController
     @cook = Cook.find(params[:id])
   end
 
+  def edit; end
+
   def create
-    @cook = Cook.new(cooks_params)
+    @cook = Cook.new(cook_params)
     if @cook.save
       flash[:success] = "Welcome to the App!"
       redirect_to cook_url(@cook)
@@ -39,6 +43,6 @@ private
     @cook = Cook.find(params[:id])
   end
 
-  def cooks_params
+  def cook_params
     params.require(:cook).permit(:first_name,:last_name, :email, :password )
   end
