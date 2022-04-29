@@ -1,6 +1,8 @@
 class ManagersController < ApplicationController
   before_action :set_manager, only: %i[ show edit update destroy ]
-  def index; end
+  def index
+    @managers = Manager.all
+  end
 
   def new
     @manager = Manager.new

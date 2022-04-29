@@ -24,8 +24,9 @@ RSpec.describe "/users", type: :request do
     password: Faker::Internet.base64
   }}
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    { first_name: 'J', last_name: 'D', email: 'test@test.com', password: Faker::Internet.base64 }
   }
+  # let(:valid_user) { create(:user, valid_attributes) }
 
   describe "GET /index" do
     it "renders a successful response" do
@@ -72,49 +73,53 @@ RSpec.describe "/users", type: :request do
       end
     end
 
-    # context "with invalid parameters" do
-    #   it "does not create a new User" do
-    #     expect {
-    #       post users_url, params: { user: invalid_attributes }
-    #     }.to change(User, :count).by(0)
-    #   end
+    context "with invalid parameters" do
+      it "does not create a new User" do
+        expect {
+          post users_url, params: { user: invalid_attributes }
+        }.to change(User, :count).by(0)
+      end
 
-    #   it "renders a successful response (i.e. to display the 'new' template)" do
-    #     post users_url, params: { user: invalid_attributes }
-    #     expect(response).to be_successful
-    #   end
-    # end
+      it "renders a successful response (i.e. to display the 'new' template)" do
+        post users_url, params: { user: invalid_attributes }
+        expect(response.status).to eq(422)
+      end
+    end
   end
 
-  # describe "PATCH /update" do
-  #   context "with valid parameters" do
-  #     let(:new_attributes) {
-  #       skip("Add a hash of attributes valid for your model")
-  #     }
+  describe "PATCH /update" do
+    context "with valid parameters" do
+      let(:new_attributes) {
+        { first_name: 'Jimmy', last_name: 'Brown', email: 'updated_test@test.com', password: "str" }
+      }
 
-  #     it "updates the requested user" do
-  #       user = User.create! valid_attributes
-  #       patch user_url(user), params: { user: new_attributes }
-  #       user.reload
-  #       skip("Add assertions for updated state")
-  #     end
+      it "updates the requested user" do
+        user = User.create! valid_attributes
+        patch user_url(user), params: { user: new_attributes }
+        user.reload
+        expect(user.first_name) == (new_attributes[:first_name])
+        expect(user.last_name) == (new_attributes[:last_name])
+        expect(user.email) == (new_attributes[:email])
+      end
 
-  #     it "redirects to the user" do
-  #       user = User.create! valid_attributes
-  #       patch user_url(user), params: { user: new_attributes }
-  #       user.reload
-  #       expect(response).to redirect_to(user_url(user))
-  #     end
-  #   end
+      # it "redirects to the user" do
+      #   user = User.create! valid_attributes
+      #   patch user_url(user), params: { user: new_attributes }
+      #   user.reload
+      #   expect(response).to redirect_to(user_url(user))
+      # end
+    end
 
-  #   context "with invalid parameters" do
-  #     it "renders a successful response (i.e. to display the 'edit' template)" do
-  #       user = User.create! valid_attributes
-  #       patch user_url(user), params: { user: invalid_attributes }
-  #       expect(response).to be_successful
-  #     end
-  #   end
-  # end
+    context "with invalid parameters" do
+      it "renders a successful response (i.e. to display the 'edit' template)" do
+        user = User.create! valid_attributes
+        patch user_url(user), params: { user: invalid_attributes }
+        user.reload
+        expect(user.first_name).not_to eq(invalid_attributes[:first_name])
+        expect(response.status).to eq(422)
+      end
+    end
+  end
 
   describe "DELETE /destroy" do
     it "destroys the requested user" do
