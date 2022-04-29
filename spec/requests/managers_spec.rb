@@ -62,7 +62,7 @@ RSpec.describe "Managers", type: :request do
 
       it "renders a successful response (i.e. to display the 'new' template)" do
         post managers_url, params: { manager: invalid_attributes }
-        expect(response.status) == 200
+        expect(response.status) == 422
       end
     end
   end
@@ -107,9 +107,9 @@ RSpec.describe "Managers", type: :request do
       }.to change(Manager, :count).by(-1)
     end
 
-    # it 'redirects to the managers list' do
-    #   delete manager_url(valid_manager)
-    #   expect(response).to redirect_to(managers_url)
-    # end
+    it 'redirects to the managers list' do
+      delete manager_url(valid_manager)
+      expect(response).to redirect_to(managers_url)
+    end
   end
 end

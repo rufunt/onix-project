@@ -1,4 +1,4 @@
-class ManuItemsController < ApplicationController
+class MenuItemsController < ApplicationController
   before_action :set_menu_item, only: %i[ show edit update destroy ]
   def index; end
 
@@ -37,7 +37,7 @@ end
 
 private
   def set_menu_item
-    @menu_item = MenuItem.find(params[:id])
+    @menu_item ||= MenuItem.find(params.permit(:id)[:id].to_i)
   end
 
   def menu_item_params

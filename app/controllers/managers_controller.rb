@@ -24,7 +24,7 @@ class ManagersController < ApplicationController
 
   def update
     if @manager.update(manager_params)
-      redirect_to manager_url(@manager), notice: "User was successfully updated."
+      redirect_to manager_url(@manager), notice: "Manager was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -38,7 +38,7 @@ end
 
 private
   def set_manager
-    @manager = Manager.find(params[:id])
+    @manager ||= Manager.find(params.permit(:id)[:id].to_i)
   end
 
   def manager_params
