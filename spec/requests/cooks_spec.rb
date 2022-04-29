@@ -81,11 +81,11 @@ RSpec.describe "Cooks", type: :request do
         expect(valid_cook.email) == (new_attributes[:email])
       end
 
-      # it 'redirects to the cook' do
-      #   patch cook_url(valid_cook), params: { cook: new_attributes }
-      #   valid_cook.reload
-      #   expect(response).to redirect_to(cook_url(valid_cook))
-      # end
+      it 'redirects to the cook' do
+        patch cook_url(valid_cook), params: { cook: new_attributes }
+        valid_cook.reload
+        expect(response).to redirect_to(cook_url(valid_cook))
+      end
     end
 
     context 'with invalid parameters' do
@@ -107,9 +107,9 @@ RSpec.describe "Cooks", type: :request do
       }.to change(Cook, :count).by(-1)
     end
 
-    # it 'redirects to the cooks list' do
-    #   delete cook_url(valid_cook)
-    #   expect(response).to redirect_to(cooks_url)
-    # end
+    it 'redirects to the cooks list' do
+      delete cook_url(valid_cook)
+      expect(response).to redirect_to(cooks_url)
+    end
   end
 end

@@ -58,9 +58,9 @@ RSpec.describe "MenuItems", type: :request do
     end
 
     context 'with invalid parameters' do
-      # it 'does not create a new MenuItem' do
-      #   expect { post menu_items_url, params: { menu_item: invalid_attributes } }.to change(MenuItem, :count).by(0)
-      # end
+      it 'does not create a new MenuItem' do
+        expect { post menu_items_url, params: { menu_item: invalid_attributes } }.to change(MenuItem, :count).by(0)
+      end
 
       it "renders a successful response (i.e. to display the 'new' template)" do
         post menu_items_url, params: { menu_item: invalid_attributes }
@@ -109,9 +109,9 @@ RSpec.describe "MenuItems", type: :request do
       }.to change(MenuItem, :count).by(-1)
     end
 
-    # it 'redirects to the menu_items list' do
-    #   delete menu_item_url(valid_menu_item)
-    #   expect(response).to redirect_to(menu_items_url)
-    # end
+    it 'redirects to the menu_items list' do
+      delete menu_item_url(valid_menu_item)
+      expect(response).to redirect_to(menu_items_url)
+    end
   end
 end

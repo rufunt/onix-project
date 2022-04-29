@@ -70,7 +70,7 @@ RSpec.describe "Managers", type: :request do
   describe 'PATCH /update' do
     context 'with valid parameters' do
       let(:new_attributes) {
-        { first_name: 'Jimmy', last_name: 'Brown', email: 'updated_test@test.com', password: "str" }
+        { first_name: 'Jimmy', last_name: 'Brown', email: 'test@test.com', password: "str" }
       }
 
       it 'updates the requested manager' do
@@ -81,11 +81,11 @@ RSpec.describe "Managers", type: :request do
         expect(valid_manager.email) == (new_attributes[:email])
       end
 
-      # it 'redirects to the manager' do
-      #   patch manager_url(valid_manager), params: { manager: new_attributes }
-      #   valid_manager.reload
-      #   expect(response).to redirect_to(manager_url(valid_manager))
-      # end
+      it 'redirects to the manager' do
+        patch manager_url(valid_manager), params: { manager: new_attributes }
+        valid_manager.reload
+        expect(response).to redirect_to(manager_url(valid_manager))
+      end
     end
 
     context 'with invalid parameters' do
@@ -107,9 +107,9 @@ RSpec.describe "Managers", type: :request do
       }.to change(Manager, :count).by(-1)
     end
 
-    # it 'redirects to the managers list' do
-    #   delete manager_url(valid_manager)
-    #   expect(response).to redirect_to(managers_url)
-    # end
+    it 'redirects to the managers list' do
+      delete manager_url(valid_manager)
+      expect(response).to redirect_to(managers_url)
+    end
   end
 end
