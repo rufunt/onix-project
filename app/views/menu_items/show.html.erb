@@ -1,0 +1,14 @@
+<div class="col-md-10 col-md-offset-1">
+  <h2><%= @menu_item.title %></h2>
+  <h6><%= @menu_item.description %></h6>
+  <h5><%= @menu_item.price %></h5>
+  <p><img src="<%= @menu_item.image_url %>" alt="" width="200" height="240"></p> 
+
+
+  <div class="col-md-4 col-md-offset-4">
+    <%= link_to "Back", menu_items_path %>
+    <%= link_to "Edit", edit_menu_item_path(@menu_item) %>
+    <%= link_to "Delete", menu_item_path(@menu_item), method: :delete, data: { confirm: "Are you sure?" } %>
+  </div>
+
+</div>

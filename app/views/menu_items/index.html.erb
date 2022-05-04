@@ -1,0 +1,8 @@
+<% @menu_items.each do |menu_item| %>
+  <h2><%= link_to menu_item.title, menu_item %></h2>
+  <h6><%= menu_item.description %></h6>
+  <h5><%= menu_item.price %></h5>
+  <p><img src="<%= menu_item.image_url %>" alt="<%= menu_item.title %>" width="100" height="120"></p>
+<% end %>
+<h5><%= link_to "New Menu item", new_menu_item_path %></h5>
+<h5><%= link_to "Back to Home", root_path %></h5>

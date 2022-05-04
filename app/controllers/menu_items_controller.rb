@@ -1,6 +1,8 @@
 class MenuItemsController < ApplicationController
   before_action :set_menu_item, only: %i[ show edit update destroy ]
-  def index; end
+  def index
+    @menu_items = MenuItem.all
+  end
 
   def new
     @menu_item = MenuItem.new
@@ -31,7 +33,7 @@ class MenuItemsController < ApplicationController
 
   def destroy
     @menu_item.destroy
-    redirect_to managers_url, notice: "MenuItem was successfully destroyed."
+    redirect_to menu_items_url, notice: "MenuItem was successfully destroyed."
   end
 end
 
