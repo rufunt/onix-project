@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "managers/new.html.erb", type: :view do
-  let(:valid_manager) { FactoryBot.create(:manager, first_name: ‘John’, last_name: ‘Dow’, email: 'test@test.com') }
+  let(:valid_manager) { FactoryBot.create(:manager, first_name: 'John', last_name: 'Dow', email: 'test@test.com') }
   
   it "Show info about manager" do
     assign(:manager, valid_manager)
@@ -15,6 +15,6 @@ RSpec.describe "managers/new.html.erb", type: :view do
     assign(:manager, valid_manager)
     
     render
-    expect(rendered).to match ‘Back’
+    expect(rendered).to match 'Back'
   end
 end
