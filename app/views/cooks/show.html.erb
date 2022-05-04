@@ -1,0 +1,12 @@
+<div class="col-md-10 col-md-offset-1">
+  <h2><%= @cook.first_name %></h2>
+  <h2><%= @cook.last_name %></h2>
+  <h2><%= @cook.email %></h2>
+
+  <div class="col-md-4 col-md-offset-4">
+    <%= link_to "Back", cooks_path %>
+    <%= link_to "Edit", edit_cook_path(@cook) %>
+    <%= link_to "Delete", cook_path(@cook), method: :delete, data: { confirm: "Are you sure?" } %>
+  </div>
+
+</div>

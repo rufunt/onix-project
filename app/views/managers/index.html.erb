@@ -1,0 +1,7 @@
+<% @managers.each do |manager| %>
+  <h2><%= link_to manager.last_name, manager %></h2>
+  <p><%= manager.email %></p>
+  
+<% end %>
+<h5><%= link_to "New Manager", new_manager_path %></h5>
+<h5><%= link_to "Back to Home", root_path %></h5>

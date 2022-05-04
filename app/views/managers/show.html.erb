@@ -1,0 +1,12 @@
+<div class="col-md-10 col-md-offset-1">
+  <h2><%= @manager.first_name %></h2>
+  <h2><%= @manager.last_name %></h2>
+  <h2><%= @manager.email %></h2>
+
+  <div class="col-md-4 col-md-offset-4">
+    <%= link_to "Back", managers_path %>
+    <%= link_to "Edit", edit_manager_path(@manager) %>
+    <%= link_to "Delete", manager_path(@manager), method: :delete, data: { confirm: "Are you sure?" } %>
+  </div>
+
+</div>
