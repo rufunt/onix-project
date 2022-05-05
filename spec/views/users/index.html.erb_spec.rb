@@ -1,28 +1,20 @@
 require 'rails_helper'
 
-RSpec.describe "users/index", type: :view do
-  before(:each) do
-    assign(:users, [
-      User.create!(
-        first_name: "First Name",
-        last_name: "Last Name",
-        email: "Email",
-        password: "Password"
-      ),
-      User.create!(
-        first_name: "First Name",
-        last_name: "Last Name",
-        email: "Email",
-        password: "Password"
-      )
-    ])
+RSpec.describe "users/index.html.erb", type: :view do
+  let(:valid_user) { FactoryBot.create(:user, first_name: 'John', last_name: 'Dow', email: 'test@test.com') }
+  
+  it "Index info about user" do
+    assign(:users, [valid_user])
+    render
+    expect(rendered).to match /New User/
+    expect(rendered).to match valid_user.last_name
+    expect(rendered).to match valid_user.email
   end
 
-  # it "renders a list of users" do
-  #   render
-  #   assert_select "tr>td", text: "First Name".to_s, count: 2
-  #   assert_select "tr>td", text: "Last Name".to_s, count: 2
-  #   assert_select "tr>td", text: "Email".to_s, count: 2
-  #   assert_select "tr>td", text: "Password".to_s, count: 2
-  # end
+  it "Index link to main list" do
+    assign(:users, [valid_user])
+    
+    render
+    expect(rendered).to match 'Back to Home'
+  end
 end
