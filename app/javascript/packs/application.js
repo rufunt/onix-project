@@ -12,7 +12,7 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-require("../stylesheets/application.scss")
+require("../../assets/stylesheets/application.scss")
 
 require("@popperjs/core")
 
