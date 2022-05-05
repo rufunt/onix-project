@@ -1,0 +1,6 @@
+<% @cash_desks.each do |cash_desk| %>
+  <h3><%= link_to cash_desk.all_balance, cash_desk %></h3>
+  <h3><%= link_to cash_desk.cook_balance, cash_desk %></h3>
+<% end %>
+<h5><%= link_to "New Cash Desk", new_cash_desk_path %></h5>
+<h5><%= link_to "Back to Home", root_path %></h5>

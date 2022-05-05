@@ -1,0 +1,11 @@
+<div class="col-md-10 col-md-offset-1">
+  <h2><%= @cash_desk.all_balance %></h2>
+  <h2><%= @cash_desk.cook_balance %></h2>
+
+  <div class="col-md-4 col-md-offset-4">
+    <%= link_to "Back", cash_desks_path %>
+    <%= link_to "Edit", edit_cash_desk_path(@cash_desk) %>
+    <%= link_to "Delete", cash_desk_path(@cash_desk), method: :delete, data: { confirm: "Are you sure?" } %>
+  </div>
+
+</div>
