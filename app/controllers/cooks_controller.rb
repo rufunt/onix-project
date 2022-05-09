@@ -1,5 +1,7 @@
 class CooksController < ApplicationController
   before_action :set_cook, only: %i[ show edit update destroy ]
+  before_action :authenticate_cook!, only: %i[ show edit update destroy ]
+
   def index
     @cooks = Cook.all
   end
@@ -8,9 +10,7 @@ class CooksController < ApplicationController
     @cook = Cook.new
   end
 
-  def show
-    @cook = Cook.find(params[:id])
-  end
+  def show; end
 
   def edit; end
 
@@ -40,7 +40,7 @@ end
 
 private
   def set_cook
-    @cook = Cook.find(params[:id])
+    @cook ||= Cook.find(params.permit(:id)[:id].to_i)
   end
 
   def cook_params
