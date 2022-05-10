@@ -1,5 +1,7 @@
 class ManagersController < ApplicationController
   before_action :set_manager, only: %i[ show edit update destroy ]
+  before_action :authenticate_manager!, only: %i[ show edit update destroy ]
+
   def index
     @managers = Manager.all
   end

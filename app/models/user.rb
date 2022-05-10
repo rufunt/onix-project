@@ -10,5 +10,8 @@ class User < ApplicationRecord
   }
   validates :password, length: { in: 6..20 }
 
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
+
   
 end

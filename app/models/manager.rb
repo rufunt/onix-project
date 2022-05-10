@@ -8,6 +8,9 @@ class Manager < ApplicationRecord
   }
   validates :password, length: { in: 6..20 }
 
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
+
   def fullname
     "#{self.first_name} #{self.last_name}"
   end

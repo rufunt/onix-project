@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   # apipie
 
-  devise_for :cooks
+  devise_for :cooks, :managers, :users
   
   resources :cooks
   resources :managers
