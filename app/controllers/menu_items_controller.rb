@@ -4,18 +4,20 @@ class MenuItemsController < ApplicationController
     @menu_items = MenuItem.all
   end
 
-  def new
-    @menu_item = MenuItem.new
-  end
-
   def show
     @menu_item = MenuItem.find(params[:id])
+  end
+
+  def new
+    @menu_item = MenuItem.new
   end
 
   def edit; end
 
   def create
     @menu_item = MenuItem.new(menu_item_params)
+    authorize @menu_item, :create?
+
     if @menu_item.save
       redirect_to menu_item_url(@menu_item)
     else

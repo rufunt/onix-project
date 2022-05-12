@@ -7,7 +7,11 @@
     <% if manager_signed_in? %>
 		  <h3><%= link_to "Menu", menu_items_path, class: "navbar-text navbar-link" %></h3>
       <h3><%= link_to "Cash Desks", cash_desks_path, class: "navbar-text navbar-link" %></h3>
-      <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+      <%= link_to "Sign Out", destroy_manager_session_path, method: :delete %>
+    <% elsif cook_signed_in? %>
+    <h3><%= link_to "Menu", menu_items_path, class: "navbar-text navbar-link" %></h3>
+    <h3><%= link_to "Cash Desks", cash_desks_path, class: "navbar-text navbar-link" %></h3>
+    <%= link_to "Sign Out", destroy_cook_session_path, method: :delete %>
     <% else %>
       <div class= "jumbotron">
         <h4>Войти как повар</h4>

@@ -1,9 +1,17 @@
 class ApplicationController < ActionController::Base
   include Pundit::Authorization
 
+
   protect_from_forgery with: :exception
 
   before_action :update_allowed_parameters, if: :devise_controller?
+
+  rescue_from Pundit::NotAuthorizedError, with: :cook_not_authorized
+
+  def cook_not_authorized
+    flash[:warning] = "You are not authorized to perform this action."
+    redirect_to(request.referrer || root_path)
+  end
 
   protected
 
