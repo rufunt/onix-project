@@ -16,8 +16,7 @@ class MenuItemsController < ApplicationController
 
   def create
     @menu_item = MenuItem.new(menu_item_params)
-    authorize @menu_item, :create?
-
+    
     if @menu_item.save
       redirect_to menu_item_url(@menu_item)
     else
@@ -26,6 +25,7 @@ class MenuItemsController < ApplicationController
   end
 
   def update
+    authorize @menu_item, :update?
     if @menu_item.update(menu_item_params)
       redirect_to menu_item_url(@menu_item), notice: "MenuItem was successfully updated."
     else

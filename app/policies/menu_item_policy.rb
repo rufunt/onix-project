@@ -8,11 +8,8 @@ class MenuItemPolicy
     @menu_item = menu_item
   end
 
-  # def new?
-  #   create?
-  # end
 
-  def create?
+  def update?
     false
   end
 
